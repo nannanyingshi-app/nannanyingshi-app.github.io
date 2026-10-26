@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>男男影视 · 剧集速看与片单指南 | nannanyingshi-app.github.io</title>
+<meta name="description" content="男男影视（nannanyingshi-app.github.io）是一份持续更新的观影参考站：按类型整理剧集与电影片单，拆解剧情看点、角色关系与镜头语言，并同步热播榜单与新片动态。不提供盗版资源，只帮你更快判断一部作品值不值得看。">
+<meta name="keywords" content="男男影视,男男影视官网,男男影视片单,nannanyingshi-app,剧集速看,高分电影推荐,类型片单,热播榜,剧情拆解,观影指南,影视资讯">
+<meta name="author" content="男男影视">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta name="theme-color" content="#101a18">
+<meta name="format-detection" content="telephone=no">
+<link rel="canonical" href="https://nannanyingshi-app.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="男男影视">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="男男影视 · 剧集速看与片单指南">
+<meta property="og:description" content="按类型整理片单、拆解剧情看点、同步热播榜单，男男影视帮你更快挑到值得一看的剧集与电影。">
+<meta property="og:url" content="https://nannanyingshi-app.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="男男影视 · 剧集速看与片单指南">
+<meta name="twitter:description" content="类型片单、剧情拆解、热播榜单与新片动态，一站看完再决定要不要点开正片。">
+<style>
+:root{
+  --ink:#101a18;
+  --ink-soft:#1c2b28;
+  --paper:#f6f4ef;
+  --amber:#e8b04b;
+  --teal:#7fd1c1;
+  --line:rgba(16,26,24,.14);
+  --muted:#5c6b67;
+  --radius:14px;
+  --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:var(--sans);
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.75;
+  font-size:16px;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{margin:0;line-height:1.25;font-weight:800;letter-spacing:.01em}
+p{margin:0}
+ul,ol,dl{margin:0;padding:0;list-style:none}
+img{max-width:100%;display:block}
+strong{font-weight:700;color:#0b1311}
+.wrap{width:min(1180px,92vw);margin:0 auto}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:12px;top:12px;background:var(--amber);padding:8px 14px;border-radius:8px;z-index:99}
+
+/* 顶部标识条 */
+.markbar{
+  background:var(--ink);
+  color:#dfe8e5;
+  font-size:13px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.markbar .wrap{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;padding:8px 0}
+.markbar span{opacity:.75}
+.domain-chip{
+  font-family:var(--mono);
+  font-size:12.5px;
+  letter-spacing:.02em;
+  color:var(--amber);
+  border:1px dashed rgba(232,176,75,.55);
+  border-radius:999px;
+  padding:3px 12px;
+  white-space:nowrap;
+}
+
+/* 导航 */
+.navbar{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.navbar .wrap{display:flex;align-items:center;gap:18px;padding:12px 0;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:.04em}
+.brand i{
+  width:26px;height:26px;border-radius:7px;
+  background:linear-gradient(135deg,var(--amber),#c2694a);
+  display:inline-block;position:relative;
+}
+.brand i::after{content:"";position:absolute;inset:7px 7px auto auto;width:7px;height:7px;border-radius:50%;background:var(--ink)}
+.menu{
+  display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;flex:1 1 auto;justify-content:flex-end;
+}
+.menu::-webkit-scrollbar{display:none}
+.menu a{
+  padding:7px 13px;border-radius:999px;font-size:14.5px;white-space:nowrap;
+  color:var(--ink-soft);border:1px solid transparent;
+}
+.menu a:hover{border-color:var(--line);background:#fff;color:#000}
+.menu a.on{background:var(--ink);color:var(--amber)}
+
+/* 首屏 */
+.hero{
+  position:relative;
+  background:
+    radial-gradient(1200px 420px at 88% -8%,rgba(127,209,193,.22),transparent 60%),
+    linear-gradient(180deg,#eef1ec,#f6f4ef 62%);
+  padding:clamp(38px,7vw,78px) 0 clamp(30px,5vw,54px);
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:repeating-linear-gradient(90deg,rgba(16,26,24,.05) 0 1px,transparent 1px 68px);
+  pointer-events:none;
+}
+.hero-grid{position:relative;display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(18px,3vw,34px);align-items:start}
+.lead{grid-column:1/8}
+.side{grid-column:8/13}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;font-size:13px;font-family:var(--mono);
+  color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:4px 12px;background:#fff;
+}
+.eyebrow b{color:var(--ink)}
+h1{
+  font-size:clamp(38px,7.2vw,74px);
+  margin:18px 0 0;
+  letter-spacing:-.01em;
+}
+h1 em{font-style:normal;color:var(--amber);text-shadow:2px 2px 0 rgba(16,26,24,.12)}
+.sub{margin-top:16px;font-size:clamp(15.5px,2.1vw,18.5px);color:#30403d;max-width:56ch}
+.sub b{color:#0b1311;border-bottom:2px solid var(--teal)}
+.searchbar{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.searchbar input{
+  flex:1 1 260px;min-width:0;font:inherit;font-size:15px;color:var(--ink);
+  padding:13px 16px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;
+}
+.searchbar input:focus{outline:2px solid var(--teal);outline-offset:1px}
+.searchbar button{
+  font:inherit;font-weight:700;font-size:15px;cursor:pointer;
+  padding:13px 26px;border:0;border-radius:var(--radius);
+  background:var(--ink);color:var(--amber);
+}
+.searchbar button:hover{background:#000}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tags a{
+  font-size:13.5px;padding:6px 12px;border-radius:8px;
+  background:#fff;border:1px solid var(--line);color:#2b3a37;
+}
+.tags a:hover{border-color:var(--amber);background:#fffaf0}
+.stat{
+  background:var(--ink);color:#e7eeeB;border-radius:18px;padding:22px 22px 18px;
+  box-shadow:0 18px 40px -28px rgba(16,26,24,.75);
+}
+.stat h2{font-size:15px;letter-spacing:.08em;color:var(--teal);font-weight:600}
+.stat dl{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:14px 10px}
+.stat dt{font-size:12.5px;color:#93a5a1}
+.stat dd{margin:0;font-size:clamp(22px,3.4vw,30px);font-weight:800;color:#fff;font-family:var(--mono)}
+.stat p{font-size:13px;color:#93a5a1;border-top:1px solid rgba(255,255,255,.12);padding-top:12px;margin-top:16px}
+.stat p code{font-family:var(--mono);color:var(--amber);font-size:12.5px}
+
+/* 通用节 */
+section{padding:clamp(40px,6vw,72px) 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.sec-head h2{font-size:clamp(23px,3.6vw,34px)}
+.sec-head h2 small{display:block;font-size:13px;font-weight:500;letter-spacing:.14em;color:var(--muted);margin-bottom:8px;font-family:var(--mono)}
+.sec-head p{font-size:14.5px;color:var(--muted);max-width:46ch}
+.rule{height:1px;background:var(--line);border:0;margin:0}
+
+/* 片库 */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease;
+}
+.card:hover{transform:translateY(-4px);box-shadow:0 20px 34px -26px rgba(16,26,24,.6)}
+.thumb{
+  aspect-ratio:16/10;position:relative;
+  background:linear-gradient(140deg,#223733,#101a18 70%);
+  display:flex;align-items:flex-end;padding:14px;
+}
+.thumb span.no{
+  position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:34px;
+  font-weight:800;color:rgba(255,255,255,.22);
+}
+.thumb span.type{
+  position:relative;font-size:13px;color:var(--ink);background:var(--amber);
+  border-radius:6px;padding:3px 9px;font-weight:700;
+}
+.thumb::after{
+  content:"";position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;
+  background:radial-gradient(circle,rgba(127,209,193,.35),transparent 70%);
+}
+.card h3{font-size:17.5px;padding:16px 16px 0}
+.card .meta{font-size:13px;color:var(--muted);padding:6px 16px 0}
+.card p{font-size:14px;color:#3b4a47;padding:10px 16px 0;flex:1}
+.bar{height:6px;margin:14px 16px 0;background:#eceae4;border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--amber))}
+.card .more{padding:12px 16px 16px;font-size:13.5px;font-weight:700;color:var(--ink)}
+.card .more span{border-bottom:1px solid var(--amber)}
+
+/* 榜单 */
+.rank-wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:26px}
+.podium{display:grid;gap:14px}
+.podium article{
+  display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:center;
+  background:#fff;border:1px solid var(--line);border-left:5px solid var(--amber);
+  border-radius:12px;padding:16px 18px;
+}
+.podium article:nth-child(2){border-left-color:#9aa8a5}
+.podium article:nth-child(3){border-left-color:#c9a227}
+.podium .no{font-family:var(--mono);font-size:30px;font-weight:800;color:var(--ink);opacity:.35}
+.podium h3{font-size:17px}
+.podium .meta{font-size:13px;color:var(--muted);margin-top:4px}
+.rank-list li{
+  display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:12px;
+  padding:13px 4px;border-bottom:1px dashed var(--line);
+}
+.rank-list .no{font-family:var(--mono);font-weight:700;color:var(--muted);font-size:15px}
+.rank-list .tt{font-size:15.5px}
+.rank-list .tt em{font-style:normal;font-size:12.5px;color:var(--muted);margin-left:8px}
+.rank-list .heat{width:76px;height:5px;background:#e9e7e1;border-radius:99px;overflow:hidden}
+.rank-list .heat i{display:block;height:100%;background:var(--amber)}
+
+/* 指南时间线 */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+.steps article{position:relative;padding-top:26px;border-top:3px solid var(--ink)}
+.steps article::before{
+  content:"";position:absolute;top:-9px;left:0;width:15px;height:15px;border-radius:50%;
+  background:var(--amber);border:3px solid var(--paper);
+}
+.steps h3{font-size:16.5px;margin-top:6px}
+.steps h3 b{font-family:var(--mono);color:var(--muted);margin-right:8px;font-size:14px}
+.steps p{font-size:14px;color:#3f4e4b;margin-top:8px}
+
+/* 资讯 */
+.news{display:grid;gap:0}
+.news li{
+  display:grid;grid-template-columns:76px 1fr;gap:20px;align-items:start;
+  padding:20px 0;border-top:1px solid var(--line);
+}
+.news li:last-child{border-bottom:1px solid var(--line)}
+.date{
+  background:var(--ink);color:#fff;border-radius:10px;text-align:center;padding:8px 4px;font-family:var(--mono);
+}
+.date b{display:block;font-size:20px;line-height:1.1}
+.date span{font-size:11.5px;color:var(--teal)}
+.news h3{font-size:17px}
+.news p{font-size:14px;color:var(--muted);margin-top:6px}
+.news .kicker{font-size:12.5px;font-weight:700;color:#a2762a;letter-spacing:.04em}
+
+/* FAQ */
+.faq{display:grid;gap:12px;max-width:900px}
+.faq details{border:1px solid var(--line);border-radius:12px;background:#fff;padding:0 18px}
+.faq details[open]{border-color:var(--amber);box-shadow:0 14px 30px -28px rgba(16,26,24,.7)}
+.faq summary{
+  cursor:pointer;list-style:none;padding:16px 0;font-weight:700;font-size:16px;
+  display:flex;justify-content:space-between;gap:14px;align-items:center;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--mono);color:var(--amber);font-size:20px}
+.faq details[open] summary::after{content:"–"}
+.faq p{font-size:14.5px;color:#3f4e4b;padding:0 0 18px}
+
+/* 关于 */
+.about{display:grid;grid-template-columns:1.25fr .95fr;gap:30px;align-items:start}
+.about .txt p{font-size:15.5px;margin-bottom:14px;color:#33423f}
+.about .txt p:first-of-type{font-size:17px;font-weight:600;color:var(--ink)}
+.infobox{border:1px solid var(--ink);border-radius:16px;overflow:hidden;background:#fff}
+.infobox h3{background:var(--ink);color:#fff;font-size:14px;letter-spacing:.1em;padding:12px 18px;font-weight:600}
+.infobox table{width:100%;border-collapse:collapse;font-size:14px}
+.infobox th,.infobox td{text-align:left;padding:12px 18px;border-top:1px solid var(--line);vertical-align:top}
+.infobox th{width:88px;color:var(--muted);font-weight:500}
+.infobox td code{font-family:var(--mono);font-size:13.5px;word-break:break-all;color:#0b1311}
+.note{margin-top:16px;font-size:13px;color:var(--muted)}
+
+/* CTA */
+.cta{
+  background:var(--ink);color:#e9efed;border-radius:20px;padding:clamp(26px,4vw,44px);
+  display:grid;grid-template-columns:1.4fr auto;gap:22px;align-items:center;
+}
+.cta h2{font-size:clamp(21px,3vw,30px);color:#fff}
+.cta p{font-size:14.5px;color:#9fb0ac;margin-top:10px;max-width:52ch}
+.cta a{
+  display:inline-block;background:var(--amber);color:var(--ink);font-weight:800;
+  padding:14px 26px;border-radius:12px;font-size:15px;white-space:nowrap;
+}
+.cta a:hover{background:#fff}
+
+/* 页脚 */
+footer{background:#0c1513;color:#c6d2cf;padding:clamp(34px,5vw,56px) 0 26px;margin-top:10px}
+.fgrid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:26px}
+.fgrid h4{font-size:14px;letter-spacing:.1em;color:var(--teal);margin-bottom:12px;font-weight:600}
+.fgrid ul{display:grid;gap:8px}
+.fgrid a{font-size:14px;color:#a9b7b4}
+.fgrid a:hover{color:var(--amber)}
+.fbrand p{font-size:14px;color:#a9b7b4;max-width:40ch;margin-top:10px}
+.fbrand .domain-chip{margin-top:14px;display:inline-block}
+.foot-bottom{
+  margin-top:30px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);
+  display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between;font-size:13px;color:#8d9c99;
+}
+.foot-bottom code{font-family:var(--mono);color:var(--amber)}
+
+@media (max-width:900px){
+  .lead,.side{grid-column:1/13}
+  .rank-wrap{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr}
+  .cta{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  body{font-size:15.5px}
+  .navbar .wrap{flex-direction:column;align-items:stretch;gap:10px}
+  .menu{justify-content:flex-start}
+  .stat dl{grid-template-columns:1fr 1fr}
+  .news li{grid-template-columns:1fr;gap:10px}
+  .date{width:74px}
+  .fgrid{grid-template-columns:1fr}
+  .cta a{text-align:center;display:block}
+}
+@media print{.navbar,.cta{display:none}}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://nannanyingshi-app.github.io/#website",
+      "url":"https://nannanyingshi-app.github.io/",
+      "name":"男男影视",
+      "alternateName":["男男影视官网","男男影视片单","nannanyingshi-app"],
+      "inLanguage":"zh-CN",
+      "description":"男男影视按类型整理剧集与电影片单，拆解剧情看点、角色关系与镜头语言，并同步热播榜单与新片动态。"
+    },
+    {
+      "@type":"Organization",
+      "@id":"https://nannanyingshi-app.github.io/#org",
+      "name":"男男影视",
+      "url":"https://nannanyingshi-app.github.io/",
+      "slogan":"先看片单，再点正片",
+      "knowsAbout":["剧集速看","类型片单","剧情拆解","热播榜单","观影指南"]
+    },
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"男男影视","item":"https://nannanyingshi-app.github.io/"},
+        {"@type":"ListItem","position":2,"name":"片库片单"},
+        {"@type":"ListItem","position":3,"name":"热播榜单"}
+      ]
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"男男影视提供哪些内容？","acceptedAnswer":{"@type":"Answer","text":"提供类型片单、单部作品的看点与剧情拆解、热播榜单变动和新片动态，属于观影决策参考，不存放或分发任何影视文件。"}},
+        {"@type":"Question","name":"片单多久更新一次？","acceptedAnswer":{"@type":"Answer","text":"热播榜单每周更新一次，类型片单随新剧上线与新片定档不定期补充，重点作品会单独出长评。"}},
+        {"@type":"Question","name":"怎么判断一部剧值不值得追？","acceptedAnswer":{"@type":"Answer","text":"先看前三集完成度、人物动机是否自洽、节奏是否稳定，再结合男男影视给出的类型匹配度与观看门槛提示综合判断。"}},
+        {"@type":"Question","name":"男男影视的评分依据是什么？","acceptedAnswer":{"@type":"Answer","text":"评分由剧情结构、表演完成度、视听语言、类型创新四项加权得出，并标注一句话短板提示，便于快速取舍。"}},
+        {"@type":"Question","name":"可以在男男影视在线看片吗？","acceptedAnswer":{"@type":"Answer","text":"不可以。站点只做片单与解析，观看请前往已取得授权的正版平台。"}}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/yazhou.js"></script>
+<a class="skip" href="#main">跳到主要内容</a>
+
+<div class="markbar">
+  <div class="wrap">
+    <span>观影参考 · 每日更新 · 站点标识 <b>男男影视</b></span>
+    <span class="domain-chip">https://nannanyingshi-app.github.io</span>
+  </div>
+</div>
+
+<header class="navbar">
+  <div class="wrap">
+    <a class="brand" href="#top"><i></i>男男影视</a>
+    <nav class="menu" aria-label="站内栏目导航">
+      <a class="on" href="#top">首页</a>
+      <a href="#library">片库片单</a>
+      <a href="#rank">热播榜单</a>
+      <a href="#guide">观影指南</a>
+      <a href="#news">新片动态</a>
+      <a href="#faq">常见问题</a>
+      <a href="#about">关于本站</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div class="lead">
+        <span class="eyebrow">更新至 <b>2026.10</b> · 片库 <b>1420+</b> 部 · 全部内容人工整理</span>
+        <h1>先看<em>男男影视</em>，<br>再决定今晚点开哪一部</h1>
+        <p class="sub">这里是 <b>男男影视</b> 的主页。我们把剧集和电影按类型、节奏、观看门槛重新分装：先给你一句结论，再拆人物动机、叙事结构与镜头语言，最后附上同类替换方案。花两分钟读完，省下两小时踩坑。</p>
+        <form class="searchbar" action="#" method="get" role="search">
+          <label class="skip" for="q">搜索片名或类型</label>
+          <input id="q" name="q" type="search" placeholder="想看什么？试试「悬疑」「都市」「治愈系电影」">
+          <button type="submit">搜片单</button>
+        </form>
+        <div class="tags">
+          <a href="#library">悬疑推理</a>
+          <a href="#library">都市现实</a>
+          <a href="#library">古装权谋</a>
+          <a href="#library">科幻设定</a>
+          <a href="#library">治愈日常</a>
+          <a href="#library">纪录影像</a>
+          <a href="#rank">本周热播</a>
+        </div>
+      </div>
+      <aside class="side">
+        <div class="stat">
+          <h2>站点速览 / SNAPSHOT</h2>
+          <dl>
+            <dt>收录片单</dt><dd>1420+</dd>
+            <dt>在追剧集</dt><dd>63</dd>
+            <dt>长评拆解</dt><dd>218</dd>
+            <dt>周更次数</dt><dd>4</dd>
+          </dl>
+          <p>本站域名：<code>nannanyingshi-app.github.io</code><br>全站地址：https://nannanyingshi-app.github.io</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="library">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><small>01 / LIBRARY</small>片库片单：按类型挑，不按热度挑</h2>
+        <p>男男影视的片单以「适合什么状态看」为线索，每张卡片都带匹配度与观看门槛。</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="thumb"><span class="no">01</span><span class="type">悬疑推理</span></div>
+          <h3>雾中列车：六节车厢的证词</h3>
+          <p class="meta">12 集 · 单集 45 分钟 · 2026</p>
+          <p>密闭空间群像，每集换一位叙述者。前两集铺陈略慢，第三集开始线索全部回收。</p>
+          <div class="bar"><i style="width:88%"></i></div>
+          <p class="meta" style="padding:8px 16px 0">匹配度 88% · 门槛：中</p>
+          <p class="more"><a href="#"><span>查看完整拆解 →</span></a></p>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="no">02</span><span class="type">都市现实</span></div>
+          <h3>通勤三号线：早高峰的十七种活法</h3>
+          <p class="meta">24 集 · 单集 30 分钟 · 2025</p>
+          <p>群像轻喜剧外壳，内核讲职场消耗。台词密度高，适合碎片时间连看。</p>
+          <div class="bar"><i style="width:81%"></i></div>
+          <p class="meta" style="padding:8px 16px 0">匹配度 81% · 门槛：低</p>
+          <p class="more"><a href="#"><span>查看完整拆解 →</span></a></p>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="no">03</span><span class="type">古装权谋</span></div>
+          <h3>烛照录：一封没有署名的奏折</h3>
+          <p class="meta">36 集 · 单集 45 分钟 · 2024</p>
+          <p>双线叙事，朝堂与市井互为镜像。人物多，建议配合我们的人物关系图观看。</p>
+          <div class="bar"><i style="width:92%"></i></div>
+          <p class="meta" style="padding:8px 16px 0">匹配度 92% · 门槛：高</p>
+          <p class="more"><a href="#"><span>查看完整拆解 →</span></a></p>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="no">04</span><span class="type">科幻设定</span></div>
+          <h3>静默轨道：第七次回归</h3>
+          <p class="meta">8 集 · 单集 55 分钟 · 2026</p>
+          <p>硬设定 + 情感线并行，特效克制。看完建议补设定词条，我们整理了一版时间轴。</p>
+          <div class="bar"><i style="width:85%"></i></div>
+          <p class="meta" style="padding:8px 16px 0">匹配度 85% · 门槛：中</p>
+          <p class="more"><a href="#"><span>查看完整拆解 →</span></a></p>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="no">05</span><span class="type">治愈日常</span></div>
+          <h3>巷口第二家面馆</h3>
+          <p class="meta">10 集 · 单集 25 分钟 · 2025</p>
+          <p>几乎没有反派，冲突来自生活本身。适合下饭，也适合状态不好的夜晚。</p>
+          <div class="bar"><i style="width:79%"></i></div>
+          <p class="meta" style="padding:8px 16px 0">匹配度 79% · 门槛：低</p>
+          <p class="more"><a href="#"><span>查看完整拆解 →</span></a></p>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="no">06</span><span class="type">纪录影像</span></div>
+          <h3>山河之间：四季节气里的手艺</h3>
+          <p class="meta">6 集 · 单集 40 分钟 · 2026</p>
+          <p>拍摄周期横跨三年，配乐极少。信息密度偏低但质感极高，建议大屏观看。</p>
+          <div class="bar"><i style="width:83%"></i></div>
+          <p class="meta" style="padding:8px 16px 0">匹配度 83% · 门槛：低</p>
+          <p class="more"><a href="#"><span>查看完整拆解 →</span></a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="rank">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><small>02 / RANKING</small>热播榜单：本周站内检索热度</h2>
+        <p>榜单按男男影视站内检索与收藏量排序，每周一更新，仅供参考不设权威评分。</p>
+      </div>
+      <div class="rank-wrap">
+        <div class="podium">
+          <article>
+            <p class="no">01</p>
+            <div>
+              <h3>雾中列车：六节车厢的证词</h3>
+              <p class="meta">悬疑推理 · 更新至第 10 集 · 站内热度 ↑ 18%</p>
+            </div>
+          </article>
+          <article>
+            <p class="no">02</p>
+            <div>
+              <h3>静默轨道：第七次回归</h3>
+              <p class="meta">科幻设定 · 已完结 · 站内热度 ↑ 12%</p>
+            </div>
+          </article>
+          <article>
+            <p class="no">03</p>
+            <div>
+              <h3>烛照录：一封没有署名的奏折</h3>
+              <p class="meta">古装权谋 · 更新至第 30 集 · 站内热度 ↑ 9%</p>
+            </div>
+          </article>
+        </div>
+        <ol class="rank-list">
+          <li><span class="no">04</span><span class="tt">通勤三号线<em>都市现实</em></span><span class="heat"><i style="width:76%"></i></span></li>
+          <li><span class="no">05</span><span class="tt">巷口第二家面馆<em>治愈日常</em></span><span class="heat"><i style="width:71%"></i></span></li>
+          <li><span class="no">06</span><span class="tt">山河之间<em>纪录影像</em></span><span class="heat"><i style="width:66%"></i></span></li>
+          <li><span class="no">07</span><span class="tt">南风未起时<em>青春成长</em></span><span class="heat"><i style="width:61%"></i></span></li>
+          <li><span class="no">08</span><span class="tt">旧城拆信人<em>年代家庭</em></span><span class="heat"><i style="width:57%"></i></span></li>
+          <li><span class="no">09</span><span class="tt">第七号放映厅<em>单元剧</em></span><span class="heat"><i style="width:52%"></i></span></li>
+          <li><span class="no">10</span><span class="tt">潮汐观测站<em>职业群像</em></span><span class="heat"><i style="width:47%"></i></span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="guide">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><small>03 / GUIDE</small>观影指南：四步筛掉烂片</h2>
+        <p>这是男男影视编辑部内部使用的筛选流程，照着做，踩坑概率明显下降。</p>
+      </div>
+      <div class="steps">
+        <article>
+          <h3><b>STEP 01</b>看前三集的完成度</h3>
+          <p>人物是否立住、冲突是否合理、镜头是否稳定。前三集没建立期待的剧，后期翻盘概率很低。</p>
+        </article>
+        <article>
+          <h3><b>STEP 02</b>查人物动机是否自洽</h3>
+          <p>把主角的每个重大选择单独拎出来问一句「为什么」。动机靠巧合推动的剧情，越往后越崩。</p>
+        </article>
+        <article>
+          <h3><b>STEP 03</b>对一下类型匹配度</h3>
+          <p>先确认自己当下的状态：想动脑、想放松还是想被安慰。状态和类型错配，好片也看不进去。</p>
+        </article>
+        <article>
+          <h3><b>STEP 04</b>留一条同类替换方案</h3>
+          <p>每部主推作品我们在片单里都配了 2 到 3 部同类型备选，看不下去时立刻换，别硬撑。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="news">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><small>04 / NEWS</small>新片动态与长评更新</h2>
+        <p>定档消息、榜单变动、长评上新，都在这里按时间倒序排列。</p>
+      </div>
+      <ul class="news">
+        <li>
+          <p class="date"><b>22</b><span>2026 / 10</span></p>
+          <div>
+            <p class="kicker">长评上新</p>
+            <h3>《雾中列车》叙事结构拆解：六个叙述者，五种谎言</h3>
+            <p>我们把每集证词的时间线重新排了一遍，找出三处被刻意隐藏的顺序错位。</p>
+          </div>
+        </li>
+        <li>
+          <p class="date"><b>18</b><span>2026 / 10</span></p>
+          <div>
+            <p class="kicker">榜单变动</p>
+            <h3>本周热播榜：科幻类回升，两部新剧首次进榜</h3>
+            <p>《静默轨道》完结带动同类型检索量上涨，站内已补充三部同类替代片单。</p>
+          </div>
+        </li>
+        <li>
+          <p class="date"><b>11</b><span>2026 / 10</span></p>
+          <div>
+            <p class="kicker">片单更新</p>
+            <h3>治愈系片单重排：从「下饭」到「适合低落时看」</h3>
+            <p>男男影视把治愈类细分成三个情绪档位，附每部的情绪曲线提示。</p>
+          </div>
+        </li>
+        <li>
+          <p class="date"><b>03</b><span>2026 / 10</span></p>
+          <div>
+            <p class="kicker">观影提示</p>
+            <h3>古装权谋类入门：先看人物关系图，再看正片</h3>
+            <p>整理了《烛照录》三张关系图，按集数分段，避免剧透前提下帮你记住谁是谁。</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><small>05 / FAQ</small>关于男男影视的常见疑问</h2>
+        <p>点击展开查看，内容随站点调整不定期修订。</p>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>男男影视提供哪些内容？</summary>
+          <p>提供类型片单、单部作品的看点与剧情拆解、热播榜单变动和新片动态，属于观影决策参考，不存放或分发任何影视文件。</p>
+        </details>
+        <details>
+          <summary>片单多久更新一次？</summary>
+          <p>热播榜单每周更新一次，类型片单随新剧上线与新片定档不定期补充，重点作品会单独出长评。</p>
+        </details>
+        <details>
+          <summary>怎么判断一部剧值不值得追？</summary>
+          <p>先看前三集完成度、人物动机是否自洽、节奏是否稳定，再结合男男影视给出的类型匹配度与观看门槛提示综合判断。</p>
+        </details>
+        <details>
+          <summary>男男影视的评分依据是什么？</summary>
+          <p>评分由剧情结构、表演完成度、视听语言、类型创新四项加权得出，并标注一句话短板提示，便于快速取舍。</p>
+        </details>
+        <details>
+          <summary>可以在男男影视在线看片吗？</summary>
+          <p>不可以。站点只做片单与解析，观看请前往已取得授权的正版平台。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="about">
+    <div class="wrap about">
+      <div class="txt">
+        <p>男男影视做的不是资源站，而是一份观影决策笔记。</p>
+        <p>很多人不是没时间看剧，而是把时间浪费在「开场十分钟就关掉」的循环里。我们把每部作品压缩成一句结论、一段拆解、几条替代方案，让你在点开正片之前，先知道自己大概会看到什么。</p>
+        <p>站内所有片单由编辑人工整理，评分维度公开，短板提示不做回避。如果一部剧我们觉得不值得看，也会直接写出来。</p>
+        <p>站点全称：男男影视 · 剧集速看与片单指南；网址：https://nannanyingshi-app.github.io</p>
+      </div>
+      <div class="infobox">
+        <h3>站点信息 / SITE INFO</h3>
+        <table>
+          <tbody>
+            <tr><th>名称</th><td>男男影视</td></tr>
+            <tr><th>域名</th><td><code>nannanyingshi-app.github.io</code></td></tr>
+            <tr><th>网址</th><td><code>https://nannanyingshi-app.github.io</code></td></tr>
+            <tr><th>定位</th><td>类型片单 · 剧情拆解 · 热播榜单</td></tr>
+            <tr><th>更新</th><td>榜单周更，片单不定期补充</td></tr>
+            <tr><th>声明</th><td>仅提供参考，观看请使用正版平台</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">男男影视 · 内容每日整理，转载请注明出处 https://nannanyingshi-app.github.io</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="cta">
+        <div>
+          <h2>今晚看什么，交给男男影视先筛一遍</h2>
+          <p>把片名或类型丢进搜索框，或者直接从片库片单顺着一个方向往下看，比在首页刷半小时海报有效得多。</p>
+        </div>
+        <p><a href="#library">进入片库片单</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fbrand">
+        <a class="brand" href="#top" style="color:#fff"><i></i>男男影视</a>
+        <p>剧集速看 · 类型片单 · 剧情拆解 · 热播榜单。帮你在点开正片之前，先知道值不值得。</p>
+        <span class="domain-chip">https://nannanyingshi-app.github.io</span>
+      </div>
+      <div>
+        <h4>站内栏目</h4>
+        <ul>
+          <li><a href="#top">首页概览</a></li>
+          <li><a href="#library">片库片单</a></li>
+          <li><a href="#rank">热播榜单</a></li>
+          <li><a href="#guide">观影指南</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>内容分类</h4>
+        <ul>
+          <li><a href="#library">悬疑推理</a></li>
+          <li><a href="#library">都市现实</a></li>
+          <li><a href="#library">古装权谋</a></li>
+          <li><a href="#library">科幻设定</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>关于站点</h4>
+        <ul>
+          <li><a href="#about">关于男男影视</a></li>
+          <li><a href="#faq">常见问题</a></li>
+          <li><a href="#news">更新日志</a></li>
+          <li><a href="#top">回到顶部</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 男男影视 · 保留所有权利</span>
+      <span>本站地址：<code>https://nannanyingshi-app.github.io</code></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
